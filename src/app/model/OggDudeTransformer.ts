@@ -129,7 +129,8 @@ export class OggDudeTransformer {
             + this.nullToZero(input.SoakValue.PurchasedRanks);
         attributes.strain = Number.parseInt(input.StrainThreshold.SpeciesRanks)
             + this.nullToZero(input.StrainThreshold.StartingRanks)
-            + this.nullToZero(input.StrainThreshold.TalentRanks);
+            + this.nullToZero(input.StrainThreshold.TalentRanks)
+            + this.nullToZero(input.StrainThreshold.AttachRanks);
         attributes.wound = this.nullToZero(input.WoundThreshold.SpeciesRanks)
             + this.nullToZero(input.WoundThreshold.StartingRanks)
             + this.nullToZero(input.WoundThreshold.TalentRanks);
