@@ -100,11 +100,11 @@ export class DifficultyDice extends Dice {
                 new RollResult(0, 0, 0, 0, 0, 0, 0, 0),
                 new RollResult(0, 0, 0, -1, 0, 0, 0, 0),
                 new RollResult(0, 0, 0, -2, 0, 0, 0, 0),
-                new RollResult(0, 0, 0, 0, 0, -1, 0, 0),
-                new RollResult(0, 0, 0, 0, 0, -1, 0, 0),
-                new RollResult(0, 0, 0, 0, 0, -1, 0, 0),
-                new RollResult(0, 0, 0, 0, 0, -2, 0, 0),
-                new RollResult(0, 0, 0, 0, -1, -1, 0, 0)
+                new RollResult(0, 0, 0, 0, -1, 0, 0, 0),
+                new RollResult(0, 0, 0, 0, -1, 0, 0, 0),
+                new RollResult(0, 0, 0, 0, -1, 0, 0, 0),
+                new RollResult(0, 0, 0, 0, -2, 0, 0, 0),
+                new RollResult(0, 0, 0, -1, -1, 0, 0, 0)
             ]);
     }
 }

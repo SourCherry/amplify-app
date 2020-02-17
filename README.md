@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## xml2js additional install requirements
+
+For Angular to recognise xml2js, the following steps are required:
+
+Add the timers-browserify node module using "npm install timers-browserify"
+Add the stream-browserify node module using "npm install stream-browserify"
+Add the following path mapping in your tsconfig.json:
+    "compilerOptions": {
+      "paths": {
+        "timers": [
+          "node_modules/timers-browserify"
+        ],
+        "stream": [
+          "node_modules/stream-browserify"
+        ],
+      }
+    }

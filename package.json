@@ -27,6 +27,8 @@
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "rxjs": "~6.4.0",
+    "stream-browserify": "^2.0.2",
+    "timers-browserify": "^2.0.11",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

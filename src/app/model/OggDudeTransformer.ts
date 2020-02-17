@@ -125,7 +125,7 @@ export class OggDudeTransformer {
 
     static toAttributes(input: import("./OggDudeCharacter").CharacterAttributes): Attributes {
         const attributes: Attributes = new Attributes();
-        attributes.defense = new Defense(this.nullToZero(input.DefenseRanged), this.nullToZero(input.DefenseMelee));
+        attributes.defense = new Defense(this.nullToZero(input.DefenseRanged.PurchasedRanks), this.nullToZero(input.DefenseMelee.PurchasedRanks) + this.nullToZero(input.DefenseMelee.TalentRanks));
         attributes.soak = this.nullToZero(input.SoakValue.StartingRanks)
             + this.nullToZero(input.SoakValue.PurchasedRanks);
         attributes.strain = Number.parseInt(input.StrainThreshold.SpeciesRanks)
