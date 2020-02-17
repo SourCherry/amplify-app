@@ -1,9 +1,8 @@
 import { Character, Defense, Attributes, Characteristic, Skill, DicePool } from './Character';
-import { OggDudeCharacter, FluffyCharSkill, CharSkillRank } from './OggDudeCharacter';
 
 export class OggDudeTransformer {
 
-    static to(input: OggDudeCharacter): Character {
+    static to(input: any): Character {
         const character: Character = new Character();
         character.attributes = OggDudeTransformer.toAttributes(input.Character.Attributes);
         character.career = input.Character.Career.CareerKey;
@@ -14,7 +13,7 @@ export class OggDudeTransformer {
 
         return character;
     }
-    static toGeneralSkills(input: import("./OggDudeCharacter").CharacterSkills, characteristics: Characteristic[]): Skill[] {
+    static toGeneralSkills(input: any, characteristics: Characteristic[]): Skill[] {
         const skills: Skill[] = new Array<Skill>();
 
         const skillMap: SkillMap = new SkillMap();
@@ -22,7 +21,7 @@ export class OggDudeTransformer {
         skillMap.map
             .filter(i => { return i.skillType == SkillType.GENERAL; })
             .forEach(i => {
-                const charSkill: FluffyCharSkill = input.CharSkill.find(j => { return j.Key == i.oggDude; });
+                const charSkill: any = input.CharSkill.find(j => { return j.Key == i.oggDude; });
                 const skill: Skill = new Skill();
                 skill.attribute = i.attribute;
                 if (charSkill.isCareer) {
@@ -51,7 +50,7 @@ export class OggDudeTransformer {
 
                 if (typeof charSkill.Rank !== "string") {
 
-                    const rankRank: CharSkillRank = charSkill.Rank;
+                    const rankRank: any = charSkill.Rank;
                     if (rankRank) {
                         careerRanks = this.nullToZero(rankRank.CareerRanks);
                         nonCareerRanks = this.nullToZero(rankRank.NonCareerRanks);
@@ -90,7 +89,7 @@ export class OggDudeTransformer {
         return skills;
     }
 
-    static toCombatSkills(input: import("./OggDudeCharacter").CharacterSkills): Skill[] {
+    static toCombatSkills(input: any): Skill[] {
         const skills: Skill[] = new Array<Skill>();
 
         input.CharSkill.forEach(i => {
@@ -112,7 +111,7 @@ export class OggDudeTransformer {
         return Number.parseInt(input);
     }
 
-    static toCharacteristics(input: import("./OggDudeCharacter").CharacterCharacteristics): Characteristic[] {
+    static toCharacteristics(input: any): Characteristic[] {
         const characteristics: Characteristic[] = new Array<Characteristic>();
         input.CharCharacteristic.forEach(i => {
             const characteristic: Characteristic = new Characteristic();
@@ -123,7 +122,7 @@ export class OggDudeTransformer {
         return characteristics;
     }
 
-    static toAttributes(input: import("./OggDudeCharacter").CharacterAttributes): Attributes {
+    static toAttributes(input: any): Attributes {
         const attributes: Attributes = new Attributes();
         attributes.defense = new Defense(this.nullToZero(input.DefenseRanged.PurchasedRanks), this.nullToZero(input.DefenseMelee.PurchasedRanks) + this.nullToZero(input.DefenseMelee.TalentRanks));
         attributes.soak = this.nullToZero(input.SoakValue.StartingRanks)
