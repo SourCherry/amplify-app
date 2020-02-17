@@ -1,0 +1,480 @@
+{
+    "characters": [
+        {
+            "characterName": "Mo'To",
+            "playerName": "David Richardson",
+            "species": "Whipid",
+            "career": "Hired Gun",
+            "specialisations": [
+                {
+                    "name": "Maruader"
+                },
+                {
+                    "name": "Doctor"
+                },
+                {
+                    "name": "Commando"
+                }
+            ],
+            "characeteristics": [
+                {
+                    "name": "Brawn",
+                    "value": 5
+                },
+                {
+                    "name": "Agility",
+                    "value": 2
+                },
+                {
+                    "name": "Intellect",
+                    "value": 6
+                },
+                {
+                    "name": "Cunning",
+                    "value": 2
+                },
+                {
+                    "name": "Willpower",
+                    "value": 2
+                },
+                {
+                    "name": "Presence",
+                    "value": 2
+                }
+            ],
+            "attributes": {
+                "wound": 32,
+                "strain": 16,
+                "soak": 10,
+                "defense": {
+                    "ranged": 3,
+                    "melee": 2
+                }
+            },
+            "generalSkills": [
+                {
+                    "name": "Astrogation",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 1
+                },
+                {
+                    "name": "Athletics",
+                    "attribute": "Br",
+                    "yellow": 2,
+                    "green": 3,
+                    "blue": 2,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 2
+                },
+                {
+                    "name": "Charm",
+                    "attribute": "Pr",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Coercion",
+                    "attribute": "Wil",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 0
+                },
+                {
+                    "name": "Computers",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 1
+                },
+                {
+                    "name": "Cool",
+                    "attribute": "Pr",
+                    "yellow": 1,
+                    "green": 1,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 1
+                },
+                {
+                    "name": "Co-ordination",
+                    "attribute": "Ag",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Deception",
+                    "attribute": "Cun",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Discipline",
+                    "attribute": "Wil",
+                    "yellow": 1,
+                    "green": 1,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 1
+                },
+                {
+                    "name": "Leadership",
+                    "attribute": "Pr",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Mechanics",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 1
+                },
+                {
+                    "name": "Medicine",
+                    "attribute": "Int",
+                    "yellow": 4,
+                    "green": 2,
+                    "blue": 1,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 4
+                },
+                {
+                    "name": "Negotiation",
+                    "attribute": "Pr",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Perception",
+                    "attribute": "Cun",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Piloting - Planetary",
+                    "attribute": "Ag",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 0
+                },
+                {
+                    "name": "Piloting - Space",
+                    "attribute": "Ag",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Resiliance",
+                    "attribute": "Br",
+                    "yellow": 1,
+                    "green": 4,
+                    "blue": 2,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 1
+                },
+                {
+                    "name": "Skulduggery",
+                    "attribute": "Cun",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Stealth",
+                    "attribute": "Ag",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Streetwise",
+                    "attribute": "Cun",
+                    "yellow": 0,
+                    "green": 2,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Negotiation",
+                    "attribute": "Pr",
+                    "yellow": 0,
+                    "green": 0,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Survival",
+                    "attribute": "Pr",
+                    "yellow": 1,
+                    "green": 1,
+                    "blue": 0,
+                    "autoSuccess": 1,
+                    "career": true,
+                    "rank": 1
+                },
+                {
+                    "name": "Vigilance",
+                    "attribute": "Pr",
+                    "yellow": 2,
+                    "green": 0,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 2
+                }
+            ],
+            "combatSkills": [
+                {
+                    "name": "Brawl",
+                    "attribute": "Br",
+                    "yellow": 2,
+                    "green": 3,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 1
+                },
+                {
+                    "name": "Gunnery",
+                    "attribute": "Ag",
+                    "yellow": 2,
+                    "green": 0,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 2
+                },
+                {
+                    "name": "Lightsabre",
+                    "attribute": "Br",
+                    "yellow": 0,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Melee",
+                    "attribute": "Br",
+                    "yellow": 4,
+                    "green": 1,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 4
+                },
+                {
+                    "name": "Ranged - Heavy",
+                    "attribute": "Ag",
+                    "yellow": 2,
+                    "green": 0,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 2
+                },
+                {
+                    "name": "Ranged - Light",
+                    "attribute": "Ag",
+                    "yellow": 2,
+                    "green": 3,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 5
+                }
+            ],
+            "knowledgeSkills": [
+                {
+                    "name": "Core Worlds",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 1
+                },
+                {
+                    "name": "Education",
+                    "attribute": "Int",
+                    "yellow": 3,
+                    "green": 3,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": true,
+                    "rank": 3
+                },
+                {
+                    "name": "Lore",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Outer Rim",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Underworld",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Warfare",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                },
+                {
+                    "name": "Xenology",
+                    "attribute": "Int",
+                    "yellow": 1,
+                    "green": 5,
+                    "blue": 0,
+                    "autoSuccess": 0,
+                    "career": false,
+                    "rank": 0
+                }
+            ],
+            "weapons": [
+                {
+                    "name": "Unarmed",
+                    "skill": "Brawl",
+                    "range": "Engaged",
+                    "damage": 12,
+                    "critical": 4,
+                    "dicePool": {
+                        "yellow": 2,
+                        "green": 3,
+                        "blue": 0,
+                        "autoSuccess": 0
+                    },
+                    "special": "Disorientate 1, Knockdown, Stun, Vicious 1"
+                },
+                {
+                    "name": "Vibro-Machete Sythas",
+                    "skill": "Melee",
+                    "range": "Engaged",
+                    "damage": 11,
+                    "critical": 1,
+                    "dicePool": {
+                        "yellow": 4,
+                        "green": 1,
+                        "blue": 0,
+                        "autoSuccess": 0
+                    },
+                    "special": "Disorientate 1, Knockdown, Stun"
+                },
+                {
+                    "name": "Brass Knuckles - Sythas",
+                    "skill": "Brawl",
+                    "range": "Engaged",
+                    "damage": 13,
+                    "critical": 3,
+                    "dicePool": {
+                        "yellow": 4,
+                        "green": 1,
+                        "blue": 0,
+                        "autoSuccess": 0
+                    },
+                    "special": "Disorientate 3, Knockdown, Stun, Vicious 1"
+                },
+                {
+                    "name": "Energery Pistol - Sythas",
+                    "skill": "Ranged - Light",
+                    "range": "Medium",
+                    "damage": 6,
+                    "critical": 3,
+                    "dicePool": {
+                        "yellow": 4,
+                        "green": 1,
+                        "blue": 0,
+                        "autoSuccess": 0
+                    },
+                    "special": ""
+                }
+            ]
+        }
+    ]
+}
