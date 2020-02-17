@@ -1,4 +1,4 @@
-<div appOggdudeUpload class="uploadfilecontainer" (click)="fileInput.click()" (onFileDropped)="uploadFile($event)">
+<div *ngIf="showUpload" appOggdudeUpload class="uploadfilecontainer" (click)="fileInput.click()" (onFileDropped)="uploadFile($event)">
   <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
 </div>
 <div class="card container" *ngFor="let character of characters | async">

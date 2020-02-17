@@ -1,14 +1,8 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-
-import { ApiService } from './api.service';
-import { Observable, of, Subscriber, TeardownLogic } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
 import { Character } from './model/Character';
-import { HttpClient } from '@angular/common/http';
 import { OggDudeTransformer } from './model/OggDudeTransformer';
-
 import { xml2js } from '../../node_modules/xml2js';
-import { ObserveOnOperator } from 'rxjs/internal/operators/observeOn';
-import { Serializer } from '@angular/compiler';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -19,9 +13,10 @@ import { map } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   title = 'amplify-app';
   private reader : FileReader = new FileReader();
+  private showUpload : boolean = true;
   private characters: Observable<Character[]>;
 
-  constructor(private apiService: ApiService, private httpClient: HttpClient) { }
+  constructor() { }
 
   ngOnInit() {
 
@@ -41,7 +36,6 @@ export class AppComponent implements OnInit {
         }
         
         parseString(xml, {explicitArray : false, emptyTag : null, valueProcessors : [ignorePortrait]}, function (err, result) {
-        //parseString(xml, {valueProcessors : [ignorePortrait]}, function (err, result) {
             if(err) {
               console.error(err);
               throw new Error(err);
@@ -51,26 +45,13 @@ export class AppComponent implements OnInit {
         });
         return oggDude;
       }))
-      // .pipe(map((input : any) => {
-      //   const json : string = JSON.stringify(input);
-      //   console.log(json)
-      //   const oggDude = Convert.toOggDudeCharacter(input);
-      //   return oggDude;
-      // }))
-      // .pipe(map((oggDude : OggDudeCharacter) => {
-      //   const character : Character = OggDudeTransformer.to(oggDude);
-      //   const characters : Character[] = new Array<Character>();
-      //   characters.push(character);
-      //   return characters;        
-      // }));
       .pipe(map((oggDude : any) => {
         const character : Character = OggDudeTransformer.to(oggDude);
         const characters : Character[] = new Array<Character>();
         characters.push(character);
+        this.showUpload = false;
         return characters;        
       }));
-
-    //this.character = this.apiService.getCharacter();
   }
 
   uploadFile(event: Blob[]) {
