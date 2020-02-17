@@ -8,12 +8,12 @@ export class OggDudeTransformer {
         character.career = input.Character.Career.CareerKey;
         character.characterName = input.Character.Description.CharName;
         character.characteristics = OggDudeTransformer.toCharacteristics(input.Character.Characteristics);
-        character.generalSkills = OggDudeTransformer.toGeneralSkills(input.Character.Skills, character.characteristics);
+        character.generalSkills = OggDudeTransformer.toGeneralSkills(input.Character.Skills, character.characteristics, character.attributes.forceRating);
         character.combatSkills = OggDudeTransformer.toCombatSkills(input.Character.Skills);
 
         return character;
     }
-    static toGeneralSkills(input: any, characteristics: Characteristic[]): Skill[] {
+    static toGeneralSkills(input: any, characteristics: Characteristic[], forceRating : number): Skill[] {
         const skills: Skill[] = new Array<Skill>();
 
         const skillMap: SkillMap = new SkillMap();
@@ -38,6 +38,7 @@ export class OggDudeTransformer {
                 let nonCareerRanks: number = 0;
                 let purchasedRanks: number = 0;
                 let speciesRanks: number = 0;
+                let forceRanks: number = 0;
 
                 if (charSkill.CharKeyOverride) {
                     attributeRanks = characteristics.find(c => c.name = charSkill.CharKeyOverride).value;
@@ -50,17 +51,18 @@ export class OggDudeTransformer {
 
                 if (typeof charSkill.Rank !== "string") {
 
-                    const rankRank: any = charSkill.Rank;
-                    if (rankRank) {
-                        careerRanks = this.nullToZero(rankRank.CareerRanks);
-                        nonCareerRanks = this.nullToZero(rankRank.NonCareerRanks);
-                        purchasedRanks = this.nullToZero(rankRank.PurchasedRanks);
-                        speciesRanks = this.nullToZero(rankRank.SpeciesRanks);
+                    const rank: any = charSkill.Rank;
+                    if (rank) {
+                        careerRanks = this.nullToZero(rank.CareerRanks);
+                        nonCareerRanks = this.nullToZero(rank.NonCareerRanks);
+                        purchasedRanks = this.nullToZero(rank.PurchasedRanks);
+                        speciesRanks = this.nullToZero(rank.SpeciesRanks);
                     } else {
                         careerRanks = 0;
                         nonCareerRanks = 0;
                         purchasedRanks = 0;
                         speciesRanks = 0;
+                        forceRanks = 0;
                     }
                     const totalRanks: number = careerRanks + nonCareerRanks + purchasedRanks + speciesRanks;
 
@@ -124,7 +126,15 @@ export class OggDudeTransformer {
 
     static toAttributes(input: any): Attributes {
         const attributes: Attributes = new Attributes();
-        attributes.defense = new Defense(this.nullToZero(input.DefenseRanged.PurchasedRanks), this.nullToZero(input.DefenseMelee.PurchasedRanks) + this.nullToZero(input.DefenseMelee.TalentRanks));
+        let defenseRanged : number = 0;
+        if(input.DefenseRanged) {
+            defenseRanged = this.nullToZero(input.DefenseRanged.PurchasedRanks) + this.nullToZero(input.DefenseRanged.TalentRanks);
+        }
+        let defenseMelee : number = 0;
+        if(input.DefenseMelee) {
+            defenseMelee = this.nullToZero(input.DefenseMelee.PurchasedRanks) + this.nullToZero(input.DefenseMelee.TalentRanks)
+        }
+        attributes.defense = new Defense(defenseRanged, defenseMelee);
         attributes.soak = this.nullToZero(input.SoakValue.StartingRanks)
             + this.nullToZero(input.SoakValue.PurchasedRanks);
         attributes.strain = Number.parseInt(input.StrainThreshold.SpeciesRanks)
@@ -134,6 +144,7 @@ export class OggDudeTransformer {
         attributes.wound = this.nullToZero(input.WoundThreshold.SpeciesRanks)
             + this.nullToZero(input.WoundThreshold.StartingRanks)
             + this.nullToZero(input.WoundThreshold.TalentRanks);
+        attributes.forceRating = this.nullToZero(input.ForceRating.TalentRanks);
         return attributes;
     }
 }

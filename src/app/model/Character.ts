@@ -59,6 +59,7 @@ export class Attributes {
     strain: number;
     soak: number;
     defense: Defense;
+    forceRating: number;
 }
 
 export class Defense {
