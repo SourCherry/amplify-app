@@ -17,13 +17,14 @@ export class OggDudeTransformer {
         const skills: Skill[] = new Array<Skill>();
 
         const skillMap: SkillMap = new SkillMap();
+        const attributeMap: AttributeMap = new AttributeMap();
 
         skillMap.map
             .filter(i => { return i.skillType == SkillType.GENERAL; })
             .forEach(i => {
-                const charSkill: any = input.CharSkill.find(j => { return j.Key == i.oggDude; });
+                const charSkill: any = input.CharSkill.find(j => { return j.Key == i.oggDudeSkillKey; });
                 const skill: Skill = new Skill();
-                skill.attribute = i.attribute;
+                skill.attribute = i.oggDudeAttributeKey;
                 if (charSkill.isCareer) {
                     skill.career = true;
                 } else {
@@ -40,11 +41,14 @@ export class OggDudeTransformer {
                 let speciesRanks: number = 0;
                 let forceRanks: number = 0;
 
+                let attributeName: string;
                 if (charSkill.CharKeyOverride) {
-                    attributeRanks = characteristics.find(c => c.name = charSkill.CharKeyOverride).value;
+                    attributeName = attributeMap.map.find(a => a.oggDudeKey == charSkill.CharKeyOverride).name;
                 } else {
-                    attributeRanks = characteristics.find(c => c.name = i.attribute).value;
+                    attributeName = attributeMap.map.find(a => a.oggDudeKey == i.oggDudeAttributeKey).name;                    
                 }
+
+                attributeRanks = characteristics.find(c => c.name == attributeName).value;
 
                 let yellow: number = 0;
                 let green: number = 0;
@@ -149,60 +153,83 @@ export class OggDudeTransformer {
     }
 }
 
+export class AttributeMap {
+    map: AttributeMapEntry[] = [
+        AttributeMapEntry.create("Brawn", "BR")
+        ,AttributeMapEntry.create("Agility", "AG")
+        ,AttributeMapEntry.create("Intellect", "INT")
+        ,AttributeMapEntry.create("Cunning", "CUN")
+        ,AttributeMapEntry.create("Willpower", "WIL")
+        ,AttributeMapEntry.create("Presence", "PR")
+    ];
+}
+
+export class AttributeMapEntry {
+    name: string;
+    oggDudeKey: string;
+    static create(name: string, oggDudeKey: string): AttributeMapEntry {
+        return new AttributeMapEntry(name, oggDudeKey);
+    }
+    constructor(name: string, oggDudeKey: string) {
+        this.name = name;
+        this.oggDudeKey = oggDudeKey;
+    }
+}
+
 export class SkillMap {
     map: SkillMapEntry[] = [
-        SkillMapEntry.create("ASTRO", "Astrogation", "Int", SkillType.GENERAL)
-        , SkillMapEntry.create("ATHL", "Athletics", "Br", SkillType.GENERAL)
-        , SkillMapEntry.create("BRAWL", "Brawl", "Br", SkillType.COMBAT)
-        , SkillMapEntry.create("CHARM", "Charm", "Pr", SkillType.GENERAL)
-        , SkillMapEntry.create("COERC", "Coercion", "Wil", SkillType.GENERAL)
-        , SkillMapEntry.create("COMP", "Computers", "Int", SkillType.GENERAL)
-        , SkillMapEntry.create("COOL", "Cool", "Pr", SkillType.GENERAL)
-        , SkillMapEntry.create("COORD", "Coordination", "Ag", SkillType.GENERAL)
-        , SkillMapEntry.create("CORE", "Core Worlds", "Int", SkillType.KNOWLEDGE)
-        , SkillMapEntry.create("DECEP", "Deception", "Cun", SkillType.GENERAL)
-        , SkillMapEntry.create("DISC", "Discipline", "Wil", SkillType.GENERAL)
-        , SkillMapEntry.create("EDU", "Education", "Int", SkillType.KNOWLEDGE)
-        , SkillMapEntry.create("GUNN", "Gunnery", "Ag", SkillType.COMBAT)
-        , SkillMapEntry.create("LEAD", "Leadership", "Pr", SkillType.GENERAL)
-        , SkillMapEntry.create("LTSABER", "Lightsaber", "Br", SkillType.COMBAT)
-        , SkillMapEntry.create("LORE", "Lore", "Int", SkillType.KNOWLEDGE)
-        , SkillMapEntry.create("MECH", "Mechanics", "Int", SkillType.GENERAL)
-        , SkillMapEntry.create("MED", "Medicine", "Int", SkillType.GENERAL)
-        , SkillMapEntry.create("MELEE", "Melee", "Br", SkillType.COMBAT)
-        , SkillMapEntry.create("NEG", "Negotiation", "Pr", SkillType.GENERAL)
-        , SkillMapEntry.create("OUT", "Outer Rim", "Int", SkillType.KNOWLEDGE)
-        , SkillMapEntry.create("PERC", "Perception", "Cun", SkillType.KNOWLEDGE)
-        , SkillMapEntry.create("PILOTPL", "Piloting - Planetary", "Ag", SkillType.GENERAL)
-        , SkillMapEntry.create("PILOTSP", "Piloting - Space", "Ag", SkillType.GENERAL)
-        , SkillMapEntry.create("RANGHVY", "Ranged - Heavy", "Ag", SkillType.COMBAT)
-        , SkillMapEntry.create("RANGLT", "Ranged - Light", "Ag", SkillType.COMBAT)
-        , SkillMapEntry.create("RESIL", "Resiliance", "Br", SkillType.GENERAL)
-        , SkillMapEntry.create("SKUL", "Skulduggery", "Cun", SkillType.GENERAL)
-        , SkillMapEntry.create("STEAL", "Stealth", "Ag", SkillType.GENERAL)
-        , SkillMapEntry.create("SW", "Streetwise", "Cun", SkillType.GENERAL)
-        , SkillMapEntry.create("SURV", "Survival", "Cun", SkillType.GENERAL)
-        , SkillMapEntry.create("UND", "Underworld", "Int", SkillType.KNOWLEDGE)
-        , SkillMapEntry.create("VIGIL", "Vigilance", "Wil", SkillType.GENERAL)
-        , SkillMapEntry.create("XEN", "Xenology", "Int", SkillType.KNOWLEDGE)
-        , SkillMapEntry.create("WARF", "Warfare", "Int", SkillType.KNOWLEDGE)
+        SkillMapEntry.create("ASTRO", "Astrogation", "INT", SkillType.GENERAL)
+        , SkillMapEntry.create("ATHL", "Athletics", "BR", SkillType.GENERAL)
+        , SkillMapEntry.create("BRAWL", "Brawl", "BR", SkillType.COMBAT)
+        , SkillMapEntry.create("CHARM", "Charm", "PR", SkillType.GENERAL)
+        , SkillMapEntry.create("COERC", "Coercion", "WIL", SkillType.GENERAL)
+        , SkillMapEntry.create("COMP", "Computers", "INT", SkillType.GENERAL)
+        , SkillMapEntry.create("COOL", "Cool", "PR", SkillType.GENERAL)
+        , SkillMapEntry.create("COORD", "Coordination", "AG", SkillType.GENERAL)
+        , SkillMapEntry.create("CORE", "Core Worlds", "INT", SkillType.KNOWLEDGE)
+        , SkillMapEntry.create("DECEP", "Deception", "CUN", SkillType.GENERAL)
+        , SkillMapEntry.create("DISC", "Discipline", "WIL", SkillType.GENERAL)
+        , SkillMapEntry.create("EDU", "Education", "INT", SkillType.KNOWLEDGE)
+        , SkillMapEntry.create("GUNN", "Gunnery", "AG", SkillType.COMBAT)
+        , SkillMapEntry.create("LEAD", "Leadership", "PR", SkillType.GENERAL)
+        , SkillMapEntry.create("LTSABER", "Lightsaber", "BR", SkillType.COMBAT)
+        , SkillMapEntry.create("LORE", "Lore", "INT", SkillType.KNOWLEDGE)
+        , SkillMapEntry.create("MECH", "Mechanics", "INT", SkillType.GENERAL)
+        , SkillMapEntry.create("MED", "Medicine", "INT", SkillType.GENERAL)
+        , SkillMapEntry.create("MELEE", "Melee", "BR", SkillType.COMBAT)
+        , SkillMapEntry.create("NEG", "Negotiation", "PR", SkillType.GENERAL)
+        , SkillMapEntry.create("OUT", "Outer Rim", "INT", SkillType.KNOWLEDGE)
+        , SkillMapEntry.create("PERC", "Perception", "CUN", SkillType.KNOWLEDGE)
+        , SkillMapEntry.create("PILOTPL", "Piloting - Planetary", "AG", SkillType.GENERAL)
+        , SkillMapEntry.create("PILOTSP", "Piloting - Space", "AG", SkillType.GENERAL)
+        , SkillMapEntry.create("RANGHVY", "Ranged - Heavy", "AG", SkillType.COMBAT)
+        , SkillMapEntry.create("RANGLT", "Ranged - Light", "AG", SkillType.COMBAT)
+        , SkillMapEntry.create("RESIL", "Resiliance", "BR", SkillType.GENERAL)
+        , SkillMapEntry.create("SKUL", "Skulduggery", "CUN", SkillType.GENERAL)
+        , SkillMapEntry.create("STEAL", "Stealth", "AG", SkillType.GENERAL)
+        , SkillMapEntry.create("SW", "Streetwise", "CUN", SkillType.GENERAL)
+        , SkillMapEntry.create("SURV", "Survival", "CUN", SkillType.GENERAL)
+        , SkillMapEntry.create("UND", "Underworld", "INT", SkillType.KNOWLEDGE)
+        , SkillMapEntry.create("VIGIL", "Vigilance", "WIL", SkillType.GENERAL)
+        , SkillMapEntry.create("XEN", "Xenology", "INT", SkillType.KNOWLEDGE)
+        , SkillMapEntry.create("WARF", "Warfare", "INT", SkillType.KNOWLEDGE)
     ];
 }
 
 export class SkillMapEntry {
-    oggDude: string;
+    oggDudeSkillKey: string;
     name: string;
-    attribute: string;
+    oggDudeAttributeKey: string;
     skillType: SkillType
 
-    static create(oggDude: string, name: string, attribute: string, skillType: SkillType): SkillMapEntry {
-        return new SkillMapEntry(oggDude, name, attribute, skillType);
+    static create(oggDudeSkillKey: string, name: string, oggDudeAttributeKey: string, skillType: SkillType): SkillMapEntry {
+        return new SkillMapEntry(oggDudeSkillKey, name, oggDudeAttributeKey, skillType);
     }
 
-    constructor(oggDude: string, name: string, attribute: string, skillType: SkillType) {
+    constructor(oggDudeSkillKey: string, name: string, oggDudeAttributeKey: string, skillType: SkillType) {
         this.name = name;
-        this.oggDude = oggDude;
-        this.attribute = attribute;
+        this.oggDudeSkillKey = oggDudeSkillKey;
+        this.oggDudeAttributeKey = oggDudeAttributeKey;
         this.skillType = skillType;
     }
 }
